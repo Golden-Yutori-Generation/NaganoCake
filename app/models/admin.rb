@@ -5,4 +5,6 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items, dependent: :destroy
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
 end
