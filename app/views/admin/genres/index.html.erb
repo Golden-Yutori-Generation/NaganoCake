@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  
+
   <div class="row ml-5 mt-5">
     <h2 class="ml-3 badge-light">ジャンル一覧・追加</h2>
   </div>
-  
+
   <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
     <div class="row m-4 text-center">
       <div class ="mx-4 my-auto"><%= f.label :ジャンル名 %></div>
