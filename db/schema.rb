@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_01_18_085906) do
+=======
+ActiveRecord::Schema.define(version: 2022_01_18_054419) do
+>>>>>>> b04a96d (devise完了)
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_085906) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -39,6 +44,26 @@ ActiveRecord::Schema.define(version: 2022_01_18_085906) do
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true, null: false
     t.string "genre_id"
+=======
+  create_table "members", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "ruby_family_name", null: false
+    t.string "ruby_first_name", null: false
+    t.integer "post_code", null: false
+    t.text "address", null: false
+    t.integer "phone_number", null: false
+    t.boolean "member_status", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_members_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+>>>>>>> b04a96d (devise完了)
   end
 
 end
