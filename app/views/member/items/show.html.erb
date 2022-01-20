@@ -7,4 +7,13 @@
   <strong>￥ <%= ( @item.no_tax_price * 1.1).floor.to_s(:delimited) %> 円</strong>(税込)
 </div>
 
-
+<% if false %>
+<div>
+  <%= form_with model: @cart_items, local: true do |f| %>
+    <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.select :amount, *[1..10] %>
+    <%= f.submit 'カートに入れる' %>
+  <% end %>
+</div>
+<% end %>
