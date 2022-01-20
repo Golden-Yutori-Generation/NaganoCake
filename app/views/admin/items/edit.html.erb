@@ -5,7 +5,7 @@
   </div>
 
 
-  <%= form_with model: @item, url: admin_item_path(:id), local: true do |f| %>
+  <%= form_with model: @item, url: admin_item_path(@item), local: true do |f| %>
   <div class="row m-4">
     <div class ="mx-4 my-auto"><%= f.label :商品画像　　%></div>
     <div class ="mx-4 my-auto"><%= f.attachment_field :item_image, placeholder: "ファイルを選択" %></div>
