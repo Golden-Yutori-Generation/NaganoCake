@@ -1,2 +1,42 @@
-<h1>Member::Items#top</h1>
-<p>Find me in app/views/member/items/top.html.erb</p>
+<div class="container-fluid">
+  <div class='row'>
+    <div class='col-md-3'>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ジャンル検索</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @genres.each do |genre| %>
+            <td><%= genre.name %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <div class="border border-2">
+        ようこそ、ながのCAKEへ！</br>
+        このサイトは、ケーキ販売のECサイトになります。</td>
+        会員ではない方も商品の閲覧はできますが、</td>
+        購入には会員登録が必要になります。
+      </div>
+      <div class="row">
+        新着商品
+      </div>
+      <div class="row">
+        <div class="d-flex justify-content-between">
+          <% @items.each do |item| %>
+            <tbody>
+              <td><%= item.item_image_id %></td>
+              <td><%= item.name %></td>
+              <td><%= item.no_tax_price %></td>
+            </tbody>
+          <% end %>
+        </div>
+        <%= paginate(@items) %>
+      </div>
+    </div>
+  </div>
+</div>
