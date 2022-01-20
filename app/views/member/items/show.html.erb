@@ -1,2 +1,10 @@
-<h1>Member::Items#show</h1>
-<p>Find me in app/views/member/items/show.html.erb</p>
+<div>
+  <%= attachment_image_tag @item, :item_image, :fill, 300, 300 %>
+</div>
+
+<h2><%= @item.name %></h2>
+<div><%= @item.explanation %>
+  <strong>￥ <%= ( @item.no_tax_price * 1.1).floor.to_s(:delimited) %> 円</strong>(税込)
+</div>
+
+
