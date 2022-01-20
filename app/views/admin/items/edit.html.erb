@@ -1,11 +1,11 @@
 <div class="container-fluid">
 
   <div class="row ml-5 mt-5">
-    <h2 class="ml-3 badge-light">商品新規登録</h2>
+    <h2 class="ml-3 badge-light">商品編集</h2>
   </div>
 
 
-  <%= form_with model: @item, url: admin_item_path(:id), local: true do |f| %>
+  <%= form_with model: @item, url: admin_item_path(@item), local: true do |f| %>
   <div class="row m-4">
     <div class ="mx-4 my-auto"><%= f.label :商品画像　　%></div>
     <div class ="mx-4 my-auto"><%= f.attachment_field :item_image, placeholder: "ファイルを選択" %></div>
@@ -28,8 +28,8 @@
   </div>
   <div class="row m-4">
     <div class ="ml-4 my-auto"><%= f.label :販売ステータス　　%></div>
-    <div class ="mr-4 my-auto"><%= f.radio_button :is_active, :販売中 %>販売中</div>
-    <div class ="mx-4 my-auto"><%= f.radio_button :is_active, :販売停止中 %>販売停止中</div>
+    <div class ="mr-4 my-auto"><%= f.radio_button :is_active, false %>販売中</div>
+    <div class ="mx-4 my-auto"><%= f.radio_button :is_active, true %>販売停止中</div>
   </div>
   <div class ="mx-4 my-auto text-center"><%= f.submit '変更を保存', class: "btn btn-success"  %></div>
   <% end %>
