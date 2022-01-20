@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   patch 'members/destroy' => 'members#destroy'
   resources :members, only: [:edit, :update]
 
-  scope :member do
+  scope module: :member do
     root to: 'items#top'
     get 'about' => 'items#about', as: 'about'
   end
