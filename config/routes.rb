@@ -14,5 +14,9 @@ Rails.application.routes.draw do
     sessions: 'member/sessions'
   }
 
+  get 'members/mypage' => 'members#show'
+  get 'members/out' => 'members#out'
+  patch 'members/destroy' => 'members#destroy'
+  resources :members, only: [:edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
