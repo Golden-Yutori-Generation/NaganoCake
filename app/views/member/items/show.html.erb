@@ -9,7 +9,7 @@
 
 <% if false %>
 <div>
-  <%= form_with model: @cart_items, local: true do |f| %>
+  <%= form_with model: @cart_item, local: true do |f| %>
     <%= f.hidden_field :item_id, value: @item.id %>
     <%= f.hidden_field :member_id, value: current_member.id %>
     <%= f.select :amount, *[1..10] %>
