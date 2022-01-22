@@ -10,7 +10,6 @@ class Member::DeliveryAddressesController < ApplicationController
       @delivery_address = DeliveryAddress.new(delivery_address_params)
       @delivery_address.member_id = current_member.id
       @delivery_address.save
-        flash.now[:notice] = "新規配送先を登録しました"
         redirect_to delivery_addresses_path
     end
 
@@ -21,7 +20,6 @@ class Member::DeliveryAddressesController < ApplicationController
   	def update
   	  @delivery_address = DeliveryAddress.find(params[:id])
   	  @delivery_address.update(delivery_address_params)
-    	 flash[:success] = "配送先を変更しました"
        redirect_to delivery_addresses_path
   	end
 
@@ -29,7 +27,6 @@ class Member::DeliveryAddressesController < ApplicationController
   	  @delivery_address = DeliveryAddress.find(params[:id])
   	  @delivery_address.destroy
       @delivery_addresses = current_member.delivery_address.id
-        flash.now[:alert] = "配送先を削除しました"
         # redirect_to delivery_addresses_path
   	end
 
