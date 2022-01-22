@@ -1,0 +1,24 @@
+<h1><%= @member.full_name %>さんの会員詳細</h1>
+
+<p>会員ID</p>
+<%= @member.id %>
+<p>氏名</p>
+<%= @member.full_name %>
+<p>フリガナ</p>
+<%= @member.full_ruby_name %>
+<p>郵便番号</p>
+<%= @member.post_code %>
+<p>住所</p>
+<%= @member.address %>
+<p>電話番号</p>
+<%= @member.phone_number %>
+<p>メールアドレス</p>
+<%= @member.email %>
+<p>会員ステータス</p>
+<% if @member.member_status == false %>
+  <p>有効</p>
+<% else %>
+  <p>退会</p>
+<% end %>
+
+<%= link_to "編集する" , edit_admin_member_path(@member.id) %>
