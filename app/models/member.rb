@@ -13,4 +13,6 @@ class Member < ApplicationRecord
   validates :phone_number, presence: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
+  
+  has_one :cart_item, dependent: :destroy
 end

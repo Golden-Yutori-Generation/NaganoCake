@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :member do
+    get 'cart_items/index'
+  end
+  get 'cart_items/index'
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
@@ -22,6 +26,8 @@ Rails.application.routes.draw do
   scope module: :member do
     root to: 'items#top'
     get 'about' => 'items#about', as: 'about'
+    delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   end
 
   namespace :member do
