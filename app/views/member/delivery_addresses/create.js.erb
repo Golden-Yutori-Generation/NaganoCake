@@ -1,0 +1,11 @@
+<% if @delivery_address.errors.any? %>
+  $('#error').html("<%= j(render 'shared/error_messages', resource: @delivery_address) %>");
+<% else %>
+  $('#create').html("<%= j(render 'member/delivery_addresses/delivery', delivery_addresses: @delivery_addresses) %>");
+  $('#create').show();
+  $('input').val("");
+  $('#error_explanation').hide();
+  $('#flash').html("<%= j(render 'layouts/flash') %>");
+  $('#flash').show();
+  setTimeout("$('#flash').fadeOut('slow')", 2000);
+<% end %>
