@@ -12,6 +12,8 @@ class Member < ApplicationRecord
     self.ruby_family_name + " " + self.ruby_first_name
   end
          
+  has_many :delivery_addresse, dependent: :destroy
+         
   validates :family_name, presence: true
   validates :first_name, presence: true
   validates :ruby_family_name, presence: true
