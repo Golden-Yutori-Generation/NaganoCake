@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
   validates :no_tax_price, presence: true
 
-  belongs_to :cart_item, dependent: :destroy
+  has_many :cart_item, dependent: :destroy
 
   def with_tax_price
     (no_tax_price * 1.1).floor

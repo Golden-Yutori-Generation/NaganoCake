@@ -1,27 +1,25 @@
 class Member::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.where(member_id: current_member)
+    # @cart_items = CartItem.where(member_id: current_member)
+    @cart_items = current_member.cart_items
+    @total_price = 0
   end
 
 
   def create
-    @cart_item = current_member.cart_items.build(cart_item_params)
-    @current_item = CartItem.find(@cart_item)
-    # カートに同じ商品がなければ新規追加、あれば既存のデータと合算
-    if @current_item.nil?
-      if @cart_item.save
-        flash[:success] = 'カートに商品が追加されました！'
-        redirect_to cart_items_path
-      else
-        @carts_items = @customer.cart_items.all
-        render 'index'
-        flash[:danger] = 'カートに商品を追加できませんでした。'
-      end
+    @cart_item = CartItem.new(cart_item_params)
+    cart_item = CartItem.find_by(member_id: current_member.id, item_id: params[:cart_item][:item_id])
+    #cart_item = CartItem.find_by(member_id: current_member.id, item_id: cart_item_params[:item_id])
+    if cart_item
+      new_amount = cart_item.amount.to_i + cart_item_params[:amount].to_i
+      cart_item.update(amount: new_amount)
     else
-      @current_item.quantity += params[:quantity].to_i
-      @current_item.update(cart_item_params)
-      redirect_to cart_items_path
+      # @cart_item.member_id = current_member.id
+      # @cart_item.item_id = params[:cart_item][:item_id]
+      @cart_item.save
     end
+
+    redirect_to cart_items_path
   end
 
   def update
@@ -37,8 +35,12 @@ class Member::CartItemsController < ApplicationController
   end
 
   def all_destroy
-    @cart_items = current_user.cart_item.all
+    @cart_items = current_member.cart_items
     @cart_items.destroy_all
     redirect_to cart_items_path
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:item_id, :member_id, :amount)
   end
 end

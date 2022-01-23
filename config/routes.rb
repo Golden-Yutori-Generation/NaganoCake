@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     root to: 'items#top'
     get 'about' => 'items#about', as: 'about'
     delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :cart_items, only: [:index, :create, :destroy, :update]
   end
 
   namespace :member do

@@ -22,6 +22,7 @@ class MembersController < ApplicationController
     @member = current_member
     @member.update(member_status: true)
     #強制的にログアウトさせる記述が必要
+    reset_session
     redirect_to "/"
   end
 
