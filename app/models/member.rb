@@ -4,6 +4,16 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def full_name
+    self.family_name + " " + self.first_name
+  end
+
+  def full_ruby_name
+    self.ruby_family_name + " " + self.ruby_first_name
+  end
+
+  has_many :delivery_addresse, dependent: :destroy
+
   validates :family_name, presence: true
   validates :first_name, presence: true
   validates :ruby_family_name, presence: true
