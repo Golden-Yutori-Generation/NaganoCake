@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     root to: 'items#top'
     get 'about' => 'items#about', as: 'about'
       resources :delivery_addresses, only: [:index, :create, :edit, :update, :destroy]
+    delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
+    resources :cart_items, only: [:index, :create, :destroy, :update]
   end
 
   namespace :member do
