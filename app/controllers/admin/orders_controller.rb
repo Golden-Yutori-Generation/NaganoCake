@@ -4,8 +4,9 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+    @ordered_item = OrderedItem.find(params[:id])
   end
-  
+
   def update
   end
 end

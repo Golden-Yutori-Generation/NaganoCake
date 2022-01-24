@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row ml-5 mt-5">
-    <div class="col-6">
+    <div class="col-3 text-center">
       <h2 class="ml-3 badge-light">注文履歴一覧</h2>
     </div>
 　</div>
@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
   <div class="row ml-5 mt-5">
-    <div class="col-8">
+    <div class="col-10">
       <table class="table table-hover table-inverse center-block">
         <thead class="table-secondary">
           <th>購入日時</th>
@@ -21,7 +21,7 @@
             <tr>
               <td>
                 <%= link_to admin_orders_item_path(orders_item) do %>
-                  <%= orders_item.order.created_at %>
+                  <%= ordered_item.order.created_at %>
                 <% end %>
               </td>
               <td>
@@ -29,7 +29,6 @@
                 <%= ordered_item.order.member.first_name %>
               </td>
               <td><%= ordered_item.amount %></td>
-              <td><%= item.genre.name %></td>
               <% if ordered_item.order.order_status == 0 %>
                 <td>入金待ち</td>
               <% elsif ordered_item.order.order_status == 1%>
@@ -46,7 +45,7 @@
         </tbody>
       </table>
       <div class="text-center">
-        <%= paginate @ordered_items %>
+        <%#= paginate @ordered_items %>
       </div>
     </div>
   </div>
