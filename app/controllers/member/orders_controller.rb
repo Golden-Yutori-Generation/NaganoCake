@@ -37,7 +37,7 @@ class Member::OrdersController < ApplicationController
   end
 
   def index
-    @ordered_items = OrderedItem.all
+    @order = Order.all
   end
 
   def show
