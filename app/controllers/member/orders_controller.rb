@@ -6,14 +6,16 @@ class Member::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to orders_confirm_path
+      redirect_to  orders_complete_path
     else
       render :new
     end
   end
 
   def confirm
-    @order = Order.new
+    @order = Order.new(order_params)
+    @order.member_id = current_member.id
+    @total_price = 0
     @cart_items = current_member.cart_items
     if params[:order][:address_option] == 0.to_s
       @order.shipping_post_code = current_member.post_code
@@ -25,7 +27,7 @@ class Member::OrdersController < ApplicationController
       @order.shipping_address = @delivery_addresses.address
       @order.shipping_name = @delivery_addresses.name
     else
-      @order.shipping_post_code = params[:order][:shippong_post_code]
+      @order.shipping_post_code = params[:order][:shipping_post_code]
       @order.shipping_address = params[:order][:shipping_address]
       @order.shipping_name = params[:order][:shipping_name]
     end
@@ -39,10 +41,10 @@ class Member::OrdersController < ApplicationController
 
   def show
   end
-  
+
   private
   def order_params
-    params.require(:order).permit(:payment_method, :shipping_post_code, :shipping_address, :shipping_name)
+    params.require(:order).permit(:payment_method, :shipping_post_code, :shipping_address, :shipping_name, :billing_amount, :member_id)
   end
 
 end
