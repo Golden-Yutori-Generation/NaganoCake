@@ -35,6 +35,7 @@ class Member::OrdersController < ApplicationController
   end
 
   def index
+    @ordered_items = OrderedItem.all
   end
 
   def show
