@@ -18,12 +18,12 @@
 　      <%= ordered_item.order.member.family_name %>
         <%= ordered_item.order.member.first_name %>
       </div>
-　    <div><%#=ordered_item.order %></div>
+　    <div><%=ordered_item.order.created_at, format: :short %></div>
 　    <div><%= ordered_item.order.shipping_address %></div>
 　    <div><%= ordered_item.order.payment_method %></div>
 　    <div>
 　      <%= form_with model: orders, local: true do |f| %>
-          <%#= f.select :order_status options_from_collection_for_select(Order.all, :id, :order_status) %> %>
+          <%#= f.select :order_status options_from_collection_for_select(Order.all, :id, :order_status) %>
           <%= f.submit '更新',class: 'btn btn-success ml-4' %>
         <% end %>
 　    </div>

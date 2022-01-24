@@ -4,3 +4,19 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      order_status:
+        maney_wait: "入金待ち"
+        maney_confirm: "入金確認"
+        item_middle: "製作中"
+        item_pre: "発送準備中"
+        item_comp: "発送済み"
+    ordered_item:
+      making_status:
+        item_not: "製作不可"
+        wait: "制作待ち"
+        middle: "製作中"
+        comp: "制作完了"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y/%m/%d"
