@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2022_01_22_052329) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "delivery_addresses", force: :cascade do |t|
+    t.integer "member_id"
+    t.string "name"
+    t.string "post_code"
+    t.text "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -61,10 +70,10 @@ ActiveRecord::Schema.define(version: 2022_01_22_052329) do
     t.string "ruby_first_name", null: false
     t.integer "post_code", null: false
     t.text "address", null: false
-    t.integer "phone_number", null: false
     t.boolean "member_status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end

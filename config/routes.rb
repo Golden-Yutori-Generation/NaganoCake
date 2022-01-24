@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/top'
+    get 'orders/show'
+  end
   namespace :member do
     get 'delivery_addresses/index'
     get 'delivery_addresses/edit'
