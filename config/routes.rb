@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/top'
+    get 'orders/show'
+  end
   namespace :member do
     get 'delivery_addresses/index'
     get 'delivery_addresses/edit'
   end
-  
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
@@ -31,14 +35,14 @@ Rails.application.routes.draw do
       resources :delivery_addresses, only: [:index, :create, :edit, :update, :destroy]
     delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
     resources :cart_items, only: [:index, :create, :destroy, :update]
-    resources :orders, only: [:new, :create, :index, :show]
     get 'orders/confirm' => 'orders#confirm'
-    post 'orders/complete' => 'orders#complete'
+    get 'orders/complete' => 'orders#complete'
+    resources :orders, only: [:new, :create, :index, :show]
   end
 
   namespace :member do
     resources :items, only: [:index, :show]
   end
-    
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
