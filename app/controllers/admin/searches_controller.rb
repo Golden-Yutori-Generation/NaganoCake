@@ -4,4 +4,5 @@ class Admin::SearchesController < ApplicationController
     @member = Member.where(family_name: params[:search])
     render "member/items/index"
   end
+
 end
