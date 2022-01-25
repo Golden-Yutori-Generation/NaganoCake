@@ -1,65 +1,68 @@
-<h2>新規会員登録</h2>
+<div class="container">
+  <h2>新規会員登録</h2>
 
-<%= form_with model: @member, url: member_registration_path(@member), local: true do |f| %>
-  <%= render "member/shared/error_messages", resource: resource %>
+    <%= form_with model: @member, url: member_registration_path(@member), local: true do |f| %>
+    <%= render "member/shared/error_messages", resource: resource %>
 　
-　<div class="field">
-　  <%= f.label :（姓）%><br />
-　  <%= f.text_field :family_name, autofocus: true %>
+　
+　<div class="field form-group col-xs-9">
+　  <%= f.label :"名前", class: "col-sm-2 control-label" %>
+　  <%= f.label :"(姓)", class: "col-sm-1 control-label" %>
+　  <%= f.text_field :family_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
+　  <%= f.label :"(名)", class: "col-sm-1 control-label" %>
+　  <%= f.text_field :first_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
 　</div>
 　
-　<div class="field">
-　  <%= f.label :（名）%><br />
-　  <%= f.text_field :first_name, autofocus: true %>
+　<div class="field form-group col-xs-9">
+　  <%= f.label :"フリガナ", class: "col-sm-2 control-label" %>
+　  <%= f.label :"(セイ)", class: "col-sm-1 control-label" %>
+　  <%= f.text_field :ruby_family_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
+　  <%= f.label :"(メイ)", class: "col-sm-1 control-label"%>
+　  <%= f.text_field :ruby_first_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
 　</div>
 　
-　<div class="field">
-　  <%= f.label :（セイ）%><br />
-　  <%= f.text_field :ruby_family_name, autofocus: true %>
-　</div>
-　
-　<div class="field">
-　  <%= f.label :（メイ）%><br />
-　  <%= f.text_field :ruby_first_name, autofocus: true %>
-　</div>
-　
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field form-group col-xs-9">
+    <%= f.label :"メールアドレス", class:"col-sm-2 control-label" %>
+    <%= f.label :" ", class: "col-sm-1 control-label" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-sm-6 form-control-static"%>
   </div>
   
-  <div class="field">
-    <%= f.label :郵便番号（ハイフンなし） %><br />
-    <%= f.text_field :post_code, autofocus: true %>
+  <div class="field form-group col-xs-9">
+    <%= f.label :"郵便番号（ハイフンなし）", class: "col-sm-3 control-label" %>
+    <%= f.text_field :post_code, autofocus: true, class: "col-sm-2 form-control-static post_code" %>
   </div>
   
-  <div class="field">
-    <%= f.label :住所 %><br />
-    <%= f.text_field :address, autofocus: true %>
+  <div class="field form-group col-xs-9">
+    <%= f.label :"住所", class: "col-sm-3 control-label" %>
+    <%= f.text_field :address, autofocus: true, class: "col-sm-6 form-control-static address" %>
   </div>
   
-  <div class="field">
-    <%= f.label :電話番号（ハイフンなし） %><br />
-    <%= f.text_field :phone_number, autofocus: true %>
+  <div class="field form-group col-xs-9">
+    <%= f.label :"電話番号（ハイフンなし）", class: "col-sm-3 control-label" %>
+    <%= f.text_field :phone_number, autofocus: true, class: "col-sm-2 form-control-static" %>
   </div>
   
-  <div class="field">
+  <div class="field form-group col-xs-9">
     <%= f.label :パスワード %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-4 form-control-static" %>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field form-group col-xs-9">
+    <%= f.label :"パスワード（確認用）" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-sm-4 form-control-static" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "新規会員登録" %>
-  </div>
-<% end %>
+  <div class="actions col-xs-9">
+    <%= f.submit "新規会員登録", class:"btn btn-success btn-lg col-xs-7" %>
+  </div><br>
+  
+   <% end %>
 
-<h2>既に登録済みの方</h2>
-<h4><%= render "member/shared/links" %>から新規登録を行ってください。</h4>
+  <h2>既に登録済みの方</h2><br>
+  <p><%= render "member/shared/links" %>から新規登録を行ってください。</p>
+  
+  
+</div>
