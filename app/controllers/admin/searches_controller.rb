@@ -5,5 +5,3 @@ class Admin::SearchesController < ApplicationController
     render "member/items/index"
   end
 end
-
-end

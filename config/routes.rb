@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
-    get 'admin/searches' => 'searches#search'
+    get 'searches' => 'searches#search'
     get 'orders/top'
     get 'orders/show'
   end
