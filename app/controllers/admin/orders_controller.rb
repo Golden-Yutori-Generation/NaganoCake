@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def top
     @ordered_items = OrderedItem.all
     @total_price = 0
