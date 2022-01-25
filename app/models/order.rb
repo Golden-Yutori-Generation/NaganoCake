@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :member
-  has_many :order_items
+  has_many :ordered_items
 
   validates :shipping_address, presence: true
   validates :shipping_name, presence: true
