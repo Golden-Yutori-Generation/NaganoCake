@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row ml-5 mt-5">
+    <div class="col-3 text-center">
+      <h2 class="ml-3 badge-light">注文履歴一覧</h2>
+    </div>
+　</div>
+</div>
+
+<div class="container-fluid">
+  <div class="row ml-5 mt-5">
+    <div class="col-10">
+      <table class="table table-hover table-inverse center-block">
+        <thead class="table-secondary">
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </thead>
+        <tbody>
+          <% @ordered_items.each do |ordered_item| %>
+            <tr>
+              <td>
+                <%= link_to admin_orders_item_path(orders_item) do %>
+                  <%= ordered_item.order.created_at %>
+                <% end %>
+              </td>
+              <td>
+                <%= ordered_item.order.member.family_name %>
+                <%= ordered_item.order.member.first_name %>
+              </td>
+              <td><%= ordered_item.amount %></td>
+              <% if ordered_item.order.order_status == 0 %>
+                <td>入金待ち</td>
+              <% elsif ordered_item.order.order_status == 1%>
+                <td>入金確認</td>
+              <% elsif ordered_item.order.order_status == 2%>
+                <td>製作中</td>
+              <% elsif ordered_item.order.order_status == 3%>
+                <td>発送準備中</td>
+              <% else %>
+                <td>発送済み</td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <%#= paginate @ordered_items %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,29 @@
-<h2>ログイン</h2>
+<div class="container">
+  <h2>ログイン</h2> </br>
+ <div class="row">
+   <div class="col-xs-offset-1 col-xs-11">
+     <span>会員の方はこちらからログイン</span> </br></br>
+   </div>
+ </div>
 
-<h2>会員の方はこちらからログイン</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row mb-3">
+    <div class="col-3">
+      <%= f.label :メールアドレス %>
+    </div>
+    <div class="col-9">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+ 
+  <div class="row md-3">
+    <div class="col-3">
+      <%= f.label :パスワード %>
+    </div>
+    <div class="col-9">
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -24,7 +37,10 @@
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
+<%= flash[:error] %>
 
 <h2>会員登録がお済みではない方</h2>
 
 <%= render "member/shared/links" %>
+
+</div>

@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row ml-5 mt-2">
+    <h2 class="m-3 badge-light">注文情報入力</h2>
+  </div>
+  <div>
+    <%= form_with model: @order, url:orders_confirm_path, method: :get,local: true do |f| %>
+      <div class="row ml-4 mt-2">    
+        <div>
+          <h4>支払方法</h4>
+          <div class ="mx-4 my-auto">
+            <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
+            <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+          </div>
+          <div class ="mx-4 my-auto">
+            <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+            <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+          </div>
+        </div>
+      </div>
+      <div class="row ml-4 mt-2">    
+        <div>
+          <h4>お届け先</h4>
+          <div class ="mx-4 my-auto">
+            <%= f.radio_button :address_option, 0, checked: true %>
+            <%= f.label :address_option, "ご自身の住所" %>
+            <p class="mx-4 my-auto">
+              〒<%= current_member.post_code %> <%= current_member.address %><br>
+              <%= current_member.full_name %>
+            <p>
+          </div>
+          <div class="mx-4 my-auto">
+            <%= f.radio_button :address_option, 1 %>
+            <%= f.label :address_option, "登録済住所から選択" %>
+            <div class="mx-4 my-auto">
+              <%= f.select :delivery_address_id, options_from_collection_for_select(current_member.delivery_addresses, :id, :full_address) %>  
+            </div>
+          </div>
+          <div class="mx-4 my-auto">
+            <%= f.radio_button :address_option, 2 %>
+            <%= f.label :address_option, "新しいお届け先" %>
+            <table class="mx-4 my-auto">  
+              </tr>
+              <tr>
+                <td class="mx-auto"><%= f.label :shipping_post_code, "郵便番号(ハイフン無し)" %></td>
+                <td class="ml-"><%= f.text_field :shipping_post_code %></td>
+              </tr>
+              <tr>
+                <td class="mx-auto"><%= f.label :shipping_address, "住所" %></td>
+                <td class="ml-4"><%= f.text_field :shipping_address %></td>
+              </tr>
+              <tr>
+                <td class="mx-auto"><%= f.label :shipping_name, "宛名" %></td>
+                <td class="ml-4"><%= f.text_field :shipping_name %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="mx-4 my-auto text-center">    
+        <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
