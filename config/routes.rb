@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   namespace :member do
     get 'delivery_addresses/index'
     get 'delivery_addresses/edit'
+    get 'searches' => 'searches#search'
   end
+  
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
+    get 'admin/searches' => 'searches#search'
   end
 
   devise_for :members,skip: [:passwords,], controllers: {
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
   scope module: :member do
     root to: 'items#top'
     get 'about' => 'items#about', as: 'about'
-      resources :delivery_addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :delivery_addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
   namespace :member do
