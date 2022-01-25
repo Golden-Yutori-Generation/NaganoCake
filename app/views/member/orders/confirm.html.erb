@@ -16,6 +16,7 @@
         </tr>
       </thead>
     　<% @cart_items.each do |cart_item| %>
+    　<% @total_price += cart_item.subtotal %>
     　 <tbody>
         <tr>
            <td>
@@ -30,6 +31,7 @@
              <%= f.select :amount, *[1..10] %>
              <% end %>
            </td>
+           <td><%= cart_item.subtotal %></td>
         </tr>
        </tbody>
       <% end %>
@@ -83,6 +85,7 @@
       <%= f.hidden_field :payment_method, value: @order.payment_method %>
       <%= f.hidden_field :billing_amount, value: @total_price + 800 %>
       <%= f.hidden_field :member_id, value: @order.member_id %>
+      
       <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
  </div>
