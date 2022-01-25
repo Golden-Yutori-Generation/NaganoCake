@@ -37,9 +37,11 @@ class Member::OrdersController < ApplicationController
   end
 
   def index
+    @order = Order.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private
