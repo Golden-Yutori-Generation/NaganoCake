@@ -11,4 +11,5 @@ class Order < ApplicationRecord
 
   enum order_status: { maney_wait: 0, maney_confirm: 1, item_middle: 2, item_pre: 3, item_comp: 4}
 
+
 end
