@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row  ml-5 mt-2">
      <div class="col-6 ml-4 my-auto">
       <h2 class="badge-light col-6 text-center">注文情報確認</h2>
     </div>
   </div>
-  <div class="row  ml-5 mt-2">
+  <div class="row ml-5 mt-2">
     <div class="col-6 ml-4 my-auto">
       <h4>注文情報</h4>
       <table class="table table-bordered">
@@ -35,7 +35,12 @@
       <table class="table table-bordered">
         <tr>
           <td class="table-secondary">商品合計</td>
-          <td></td>
+          <td>
+            <% @order.ordered_items.each do |ordered_item| %>
+              <% @total_price += ordered_item.subtotal %>
+            <% end %>  
+            <%= @total_price.to_s(:delimited) %>
+          </td>
         </tr>
         <tr>
           <td class="table-secondary">送料</td>
@@ -43,7 +48,9 @@
         </tr>
         <tr>
           <td class="table-secondary">ご請求額</td>
-          <td></td>
+          <td>
+            <%= (@total_price + @order.postage).to_s(:delimited) %>
+          </td>
         </tr>
       </table>
     </div>
@@ -62,9 +69,9 @@
           <% @order.ordered_items.each do |ordered_item| %>
             <tr>
               <td><%= ordered_item.item.name %>
-              <td><%= ordered_item.perchace_price %></td>
+              <td><%= ordered_item.with_tax_price.to_s(:delimited) %></td>
               <td><%= ordered_item.amount %></td>
-              <td><%= ordered_item.perchace_price * ordered_item.amount %></td>
+              <td><%= ordered_item.subtotal.to_s(:delimited) %></td>
             </tr>
           <% end %>
         </tbody>

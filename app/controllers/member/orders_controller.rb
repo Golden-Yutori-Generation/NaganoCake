@@ -51,6 +51,7 @@ class Member::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @total_price = 0
   end
 
   private
