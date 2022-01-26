@@ -1,6 +1,6 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
-  
+
     def index
       @members = Member.page(params[:page]).order(:id)
     end
@@ -15,8 +15,12 @@ class Admin::MembersController < ApplicationController
 
     def update
       @member = Member.find(params[:id])
-      @member.save
-      redirect_to admin_members_path(member.id)
+      @member.update(member_params)
+      redirect_to admin_member_path(@member)
     end
 
+    private
+    def member_params
+      params.require(:member).permit(:family_name, :first_name, :ruby_family_name, :ruby_first_name, :post_code, :address, :phone_number, :member_status)
+    end
 end
