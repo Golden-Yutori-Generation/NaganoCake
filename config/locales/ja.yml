@@ -5,8 +5,8 @@ ja:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
       order_status:
-        maney_wait: "入金待ち"
-        maney_confirm: "入金確認"
+        money_wait: "入金待ち"
+        money_confirm: "入金確認"
         item_middle: "製作中"
         item_pre: "発送準備中"
         item_comp: "発送済み"

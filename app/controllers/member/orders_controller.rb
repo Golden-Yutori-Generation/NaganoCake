@@ -1,11 +1,11 @@
 class Member::OrdersController < ApplicationController
-  before_action :authenticate_member!
   def new
     @order = Order.new
   end
 
   def create
     @order = Order.new(order_params)
+    @order.order_status = 0
     if @order.save
       current_member.cart_items.each do | cart_item |
         ordered_item = OrderedItem.new
@@ -13,7 +13,7 @@ class Member::OrdersController < ApplicationController
         ordered_item.item_id = cart_item.item_id
         ordered_item.perchace_price = cart_item.item.no_tax_price
         ordered_item.amount = cart_item.amount
-        ordered_item.making_status = "item_not"
+        ordered_item.making_status = 0
         ordered_item.save
       end
       redirect_to  orders_complete_path
@@ -27,6 +27,7 @@ class Member::OrdersController < ApplicationController
     @order.member_id = current_member.id
     @total_price = 0
     @cart_items = current_member.cart_items
+    @order.order_status = 0
     if params[:order][:address_option] == 0.to_s
       @order.shipping_post_code = current_member.post_code
       @order.shipping_address = current_member.address
@@ -52,12 +53,11 @@ class Member::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @total_price = 0
   end
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :shipping_post_code, :shipping_address, :shipping_name, :billing_amount, :member_id)
+    params.require(:order).permit(:order_status, :payment_method, :shipping_post_code, :shipping_address, :shipping_name, :billing_amount, :member_id)
   end
 
 end

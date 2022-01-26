@@ -86,7 +86,6 @@
       <%= f.hidden_field :payment_method, value: @order.payment_method %>
       <%= f.hidden_field :billing_amount, value: @total_price + 800 %>
       <%= f.hidden_field :member_id, value: @order.member_id %>
-      
       <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
  </div>
