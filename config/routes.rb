@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   
 
   namespace :member do
-    get 'delivery_addresses/index'
-    get 'delivery_addresses/edit'
     get 'searches' => 'searches#search'
     resources :items, only: [:index, :show]
   end
