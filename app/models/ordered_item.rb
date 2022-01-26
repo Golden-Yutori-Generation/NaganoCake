@@ -11,8 +11,5 @@ class OrderedItem < ApplicationRecord
   def subtotal
     with_tax_price * amount.to_i
   end
-  
-  def total_amount
-    OrderedItem.all.sum(:amount)
-  end
+
 end
