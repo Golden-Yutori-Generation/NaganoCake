@@ -28,8 +28,8 @@
   </div>
   <div class="row m-4">
     <div class ="ml-4 my-auto"><%= f.label :販売ステータス　　%></div>
-    <div class ="mr-4 my-auto"><%= f.radio_button :is_active, :販売中 %>販売中</div>
-    <div class ="mx-4 my-auto"><%= f.radio_button :is_active, :販売停止中 %>販売停止中</div>
+    <div class ="mr-4 my-auto"><%= f.radio_button :is_active, :false %>販売中</div>
+    <div class ="mx-4 my-auto"><%= f.radio_button :is_active, :true %>販売停止中</div>
   </div>
   <div class ="mx-4 my-auto text-center"><%= f.submit '新規登録', class: "btn btn-success"  %></div>
   <% end %>

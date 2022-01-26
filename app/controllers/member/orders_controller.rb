@@ -1,4 +1,5 @@
 class Member::OrdersController < ApplicationController
+  before_action :authenticate_member!
   def new
     @order = Order.new
   end
@@ -51,6 +52,7 @@ class Member::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @total_price = 0
   end
 
   private
