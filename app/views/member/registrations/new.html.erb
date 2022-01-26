@@ -1,68 +1,71 @@
-<div class="container">
+ <table al>
   <h2>新規会員登録</h2>
+  <tbody>
 
     <%= form_with model: @member, url: member_registration_path(@member), local: true do |f| %>
     <%= render "member/shared/error_messages", resource: resource %>
-　
-　
-　<div class="field form-group col-xs-9">
-　  <%= f.label :"名前", class: "col-sm-2 control-label" %>
-　  <%= f.label :"(姓)", class: "col-sm-1 control-label" %>
-　  <%= f.text_field :family_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
-　  <%= f.label :"(名)", class: "col-sm-1 control-label" %>
-　  <%= f.text_field :first_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
-　</div>
-　
-　<div class="field form-group col-xs-9">
-　  <%= f.label :"フリガナ", class: "col-sm-2 control-label" %>
-　  <%= f.label :"(セイ)", class: "col-sm-1 control-label" %>
-　  <%= f.text_field :ruby_family_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
-　  <%= f.label :"(メイ)", class: "col-sm-1 control-label"%>
-　  <%= f.text_field :ruby_first_name, autofocus: true, class:"col-sm-3 form-control-static name" %>
-　</div>
-　
-  <div class="field form-group col-xs-9">
-    <%= f.label :"メールアドレス", class:"col-sm-2 control-label" %>
-    <%= f.label :" ", class: "col-sm-1 control-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-sm-6 form-control-static"%>
-  </div>
-  
-  <div class="field form-group col-xs-9">
-    <%= f.label :"郵便番号（ハイフンなし）", class: "col-sm-3 control-label" %>
-    <%= f.text_field :post_code, autofocus: true, class: "col-sm-2 form-control-static post_code" %>
-  </div>
-  
-  <div class="field form-group col-xs-9">
-    <%= f.label :"住所", class: "col-sm-3 control-label" %>
-    <%= f.text_field :address, autofocus: true, class: "col-sm-6 form-control-static address" %>
-  </div>
-  
-  <div class="field form-group col-xs-9">
-    <%= f.label :"電話番号（ハイフンなし）", class: "col-sm-3 control-label" %>
-    <%= f.text_field :phone_number, autofocus: true, class: "col-sm-2 form-control-static" %>
-  </div>
-  
-  <div class="field form-group col-xs-9">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password", class: "col-sm-4 form-control-static" %>
-  </div>
 
-  <div class="field form-group col-xs-9">
-    <%= f.label :"パスワード（確認用）" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-sm-4 form-control-static" %>
-  </div>
+    <tr>
+    　 <td><%= f.label :"名前" %></td>
+    　 <td><%= f.label :"(姓)" %>
+    　      <%= f.text_field :family_name, autofocus: true%></td>
+    　 <td><%= f.label :"(名)" %>
+    　      <%= f.text_field :first_name, autofocus: true %></td>
+    </tr>
+
+    <tr>
+      　<td><%= f.label :"フリガナ" %></td>
+      　<td><%= f.label :"(セイ)" %>
+      　     <%= f.text_field :ruby_family_name, autofocus: true %></td>
+      　<td><%= f.label :"(メイ)"%>
+      　     <%= f.text_field :ruby_first_name, autofocus: true %></td>
+    </tr>
+
+    <tr>
+        <td><%= f.label :"メールアドレス" %></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email"%></td>
+    </tr>
+
+    <tr>
+        <td><%= f.label :"郵便番号（ハイフンなし）"%></td>
+        <td><%= f.text_field :post_code, autofocus: true%></td>
+    </tr>
+
+    <tr>
+        <td><%= f.label :"住所" %></td>
+        <td><%= f.text_field :address, autofocus: true %></td>
+    </tr>
+
+    <tr>
+        <td><%= f.label :"電話番号（ハイフンなし）" %></td>
+        <td><%= f.text_field :phone_number, autofocus: true %></td>
+    </tr>
+
+    <tr>
+        <td><%= f.label :パスワード %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</td></em>
+        <% end %>
+        <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+    </tr>
+
+    <tr>
+        <td><%= f.label :"パスワード（確認用）" %></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    </tr>
+
+    </tbody>
+  </table>
+
 
   <div class="actions col-xs-9">
     <%= f.submit "新規会員登録", class:"btn btn-success btn-lg col-xs-7" %>
   </div><br>
-  
+
    <% end %>
 
   <h2>既に登録済みの方</h2><br>
   <p><%= render "member/shared/links" %>から新規登録を行ってください。</p>
-  
-  
+
+
 </div>
