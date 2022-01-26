@@ -3,10 +3,10 @@ class Admin::OrderedItemsController < ApplicationController
     ordered_item = OrderedItem.find(params[:id])
     @order = ordered_item.order
     ordered_item.update(ordered_item_params)
-    if ordered_item.middle?
+    if ordered_item.making_status == "middle"
       @order.order_status = "item_middle"
       @order.save
-    elsif ordered_item.comp?
+    elsif @order.ordered_items.where(making_status: "comp").count == @order.ordered_items.count
       @order.order_status = "item_pre"
       @order.save
     end
