@@ -1,36 +1,31 @@
 <div class="container-fluid">
   <div class="row ml-5 mt-5">
-    <div class="col-6">
+    <div class="col-3 text-center">
       <h2 class="ml-3 badge-light">注文履歴詳細</h2>
     </div>
 　</div>
 　<div class="row">
-　  <div class="col-2">
-　    <div>購入者</div>
-　    <div>注文日</div>
-　    <div>配達先</div>
-　    <div>支払い方法</div>
-　    <div>注文ステータス</div>
+　  <div class="col-2 font-weight-bold ml-4">
+　    <h5>購入者</h5>
+　    <h5>注文日</h5>
+　    <h5>配達先</h5>
+　    <h5 class="mb-5">支払い方法</h5>
+　    <h5>注文ステータス</h5>
 　  </div>
 　  <div class="col-8">
-　    <% @ordered_item.each do |ordered_item| %>
+　    <h5><%= @order.member.family_name %><%= @order.member.first_name %></h5>
+　    <h5><%= l @order.created_at, format: :short %></h5>
+　    <h5>〒<%= @order.shipping_post_code %>　<%= @order.shipping_address %>　<%=@order.shipping_name %></h5>
+　    <h5><%= @order.payment_method_i18n %></h5>
 　    <div>
-　      <%= ordered_item.order.member.family_name %>
-        <%= ordered_item.order.member.first_name %>
-      </div>
-　    <div><%=ordered_item.order.created_at, format: :short %></div>
-　    <div><%= ordered_item.order.shipping_address %></div>
-　    <div><%= ordered_item.order.payment_method %></div>
-　    <div>
-　      <%= form_with model: orders, local: true do |f| %>
-          <%#= f.select :order_status options_from_collection_for_select(Order.all, :id, :order_status) %>
+　      <%= form_with model: @order, url:admin_order_path(@order), method: :patch do |f| %>
+          <%= f.select :order_status, Order.order_statuses_i18n.invert %>
           <%= f.submit '更新',class: 'btn btn-success ml-4' %>
         <% end %>
 　    </div>
-　    <% end %>
 　  </div>
 　</div>
-　<div class="row">
+　<div class="row ml-2">
 　  <div class="col-8">
     　<table class="table table-bordered">
         <thead class="table-secondary">
@@ -43,17 +38,17 @@
           </tr>
         </thead>
         <tbody>
-          <% @ordered_item.each do |ordered_item| %>
+          <% @order.ordered_items.each do |ordered_item| %>
             <tr>
-              <% @total_price += ordered_item.item.cart_item.subtotal %>
+              <% @total_price += ordered_item.subtotal %>
               <td><%= ordered_item.item.name %></td>
               <td><%= ordered_item.item.with_tax_price %></td>
               <td><%= ordered_item.amount %></td>
-              <td><%= cart_item.subtotal %></td>
+              <td><%= ordered_item.subtotal %></td>
               <td class="text-center">
-                <%= form_with model: ordered_item, local: true do |f| %>
-                  <%#= f.select :making_status options_from_collection_for_select(OrderedItem.all, :id, :making_status) %>
-                <%= f.submit '更新',class: 'btn btn-success ml-4' %>
+                <%= form_with model: ordered_item, url:admin_ordered_item_path(ordered_item), method: :patch do |f| %>
+                  <%= f.select :making_status, OrderedItem.making_statuses_i18n.invert %>
+                  <%= f.submit '更新',class: 'btn btn-success ml-4' %>
                 <% end %>
               </td>
             </tr>
@@ -61,12 +56,11 @@
         </tbody>
       </table>
     </div>
-    <div class="col-4">
-      <% @ordered_item.each do |ordered_item| %>
+    <div class="col-3 font-weight-bold d-flex align-items-end mb-2">
       <div>
-        <div>商品合計<%= @total_price%></div>
-        <div>送料<%= ordered_item.order.postage %></div>
-        <div>請求合計金額<%= @total_price + ordered_item.order.postage %></div>
+        <h4>商品合計　　　　<%= @total_price%>円</h4>
+        <h4>送料 　　　　　　 800円</h3>
+        <h4>請求合計金額　　<%= @total_price + 800 %>円</h4>
       </div>
     </div>
   </div>
