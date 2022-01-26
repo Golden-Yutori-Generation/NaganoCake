@@ -34,13 +34,52 @@
 			</tbody>
 		</table>
 
-			<div>
-				<strong class="pr-3">配送先</strong>
-				<%= link_to " 一覧を見る", delivery_addresses_path(current_member.id), method: :get, class: "btn btn-primary" %>
-			</div>
-			<div class="mt-3">
-				<strong class="pr-3">注文履歴</strong>
-				<%= link_to " 一覧を見る", edit_member_path(current_member.id), method: :get, class: "btn btn-primary" %>
-			</div>
-	</div>
+ <div class="container-fluid">
+   <div class="row">
+	    <div class="col-xs-offset-1 col-xs-8">
+		    <h2 class="head-line text-center title_h2">マイページ</h2>
+		    <p><strong class="information-link"><i class="far fa-user"></i>登録情報</strong>
+			    <%= link_to '編集する',edit_member_path(current_member.id), method: :get, class: "glyphicon glyphicon-pencil btn btn-success" %>
+		    </p>
+
+			<table class="table table-bordered table-condensed" >
+				<tbody>
+					<tr>
+						<td class="col-xs-2 table-secondary">氏名</td>
+						<td class="text-left"><%= @member.family_name %><%=@member.first_name %></td>
+					</tr>
+					<tr>
+						<td class="col-xs-2 table-secondary">カナ</td>
+						<td class="text-left"><%=@member.ruby_family_name %><%=@member.ruby_first_name %></td>
+					</tr>
+					<tr>
+						<td class="col-xs-2 table-secondary">郵便番号</td>
+						<td class="text-left"><%=@member.post_code %></td>
+					</tr>
+					<tr>
+						<td class="col-xs-2 table-secondary">住所</td>
+						<td class="text-left"><%=@member.address %></td>
+					</tr>
+					<tr>
+						<td class="col-xs-2 table-secondary">電話番号</td>
+						<td class="text-left"><%=@member.phone_number %></td>
+					</tr>
+					<tr>
+						<td class="col-xs-2 table-secondary">メールアドレス</td>
+						<td class="text-left"><%=@member.email %></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+       <div class="mypage-bottoms">
+				 <p><strong class="delivery-link">配送先</strong>
+					<%= link_to " 一覧を見る", delivery_addresses_path, method: :get, class: "btn btn-primary" %>
+				 </p>
+				 <p><strong class="order-link">注文履歴</strong>
+					<%= link_to " 一覧を見る", orders_path, method: :get, class: "btn btn-primary" %>
+				 </p>
+			 </div>
+
+ </div>
 </div>
