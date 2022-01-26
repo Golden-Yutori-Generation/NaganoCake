@@ -16,6 +16,7 @@ class Member::OrdersController < ApplicationController
         ordered_item.making_status = 0
         ordered_item.save
       end
+      current_member.cart_items.destroy_all
       redirect_to  orders_complete_path
     else
       render :new
@@ -53,6 +54,7 @@ class Member::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @total_price = 0
   end
 
   private

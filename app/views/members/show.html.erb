@@ -39,10 +39,10 @@
 
        <div class="mypage-bottoms">
 				 <p><strong class="delivery-link">配送先</strong>
-					<%= link_to " 一覧を見る", edit_member_path(current_member.id), method: :get, class: "btn btn-primary" %>
+					<%= link_to " 一覧を見る", delivery_addresses_path, method: :get, class: "btn btn-primary" %>
 				 </p>
 				 <p><strong class="order-link">注文履歴</strong>
-					<%= link_to " 一覧を見る", edit_member_path(current_member.id), method: :get, class: "btn btn-primary" %>
+					<%= link_to " 一覧を見る", orders_path, method: :get, class: "btn btn-primary" %>
 				 </p>
 			 </div>
 

@@ -15,27 +15,26 @@
           <th>小計</th>
         </tr>
       </thead>
-    　<% @cart_items.each do |cart_item| %>
-    　<% @total_price += cart_item.subtotal %>
-    　 <tbody>
-        <tr>
+    　<tbody>
+        <% @cart_items.each do |cart_item| %>
           <% @total_price += cart_item.subtotal %>
-           <td>
+          <tr>
+            <td>
              <div class="row">
               <div class="col-3"><%= attachment_image_tag cart_item.item, :item_image ,size: '40x40'%></div>
               <div class="col-9 pl-2 pt-2"><%= cart_item.item.name %></div>
              </div>
-           </td>
-           <td class="pt-3"><%= cart_item.item.with_tax_price %></td>
-           <td class="text-center">
-             <%= form_with model: cart_item, local: true do |f| %>
-             <%= f.select :amount, *[1..10] %>
-             <% end %>
-           </td>
-           <td><%= cart_item.subtotal %></td>
-        </tr>
-       </tbody>
-      <% end %>
+            </td>
+            <td class="pt-3"><%= cart_item.item.with_tax_price %></td>
+            <td class="text-center">
+              <%= form_with model: cart_item, local: true do |f| %>
+               <%= f.select :amount, *[1..10] %>
+              <% end %>
+            </td>
+            <td><%= cart_item.subtotal %></td>
+          </tr>  
+        <% end %>
+      </tbody>
     </table>
     </div>
 
