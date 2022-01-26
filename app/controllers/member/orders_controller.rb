@@ -1,4 +1,5 @@
 class Member::OrdersController < ApplicationController
+  before_action :authenticate_member!
   def new
     @order = Order.new
   end
@@ -6,6 +7,15 @@ class Member::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
+      current_member.cart_items.each do | cart_item |
+        ordered_item = OrderedItem.new
+        ordered_item.order_id = @order.id
+        ordered_item.item_id = cart_item.item_id
+        ordered_item.perchace_price = cart_item.item.no_tax_price
+        ordered_item.amount = cart_item.amount
+        ordered_item.making_status = "item_not"
+        ordered_item.save
+      end
       redirect_to  orders_complete_path
     else
       render :new
@@ -37,11 +47,12 @@ class Member::OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.all
+    @orders = current_member.order
   end
 
   def show
     @order = Order.find(params[:id])
+    @total_price = 0
   end
 
   private
