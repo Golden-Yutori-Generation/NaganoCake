@@ -1,24 +1,36 @@
-<h1><%= @member.full_name %>さんの会員詳細</h1>
-
-<p>会員ID</p>
-<%= @member.id %>
-<p>氏名</p>
-<%= @member.full_name %>
-<p>フリガナ</p>
-<%= @member.full_ruby_name %>
-<p>郵便番号</p>
-<%= @member.post_code %>
-<p>住所</p>
-<%= @member.address %>
-<p>電話番号</p>
-<%= @member.phone_number %>
-<p>メールアドレス</p>
-<%= @member.email %>
-<p>会員ステータス</p>
-<% if @member.member_status == false %>
-  <p>有効</p>
-<% else %>
-  <p>退会</p>
-<% end %>
-
-<%= link_to "編集する" , edit_admin_member_path(@member.id) %>
+<div class="container-fluid">
+  <div class="row ml-5 mt-5">
+    <div class="col-5 text-center">
+      <h2 class="ml-3 badge-light"><%= @member.full_name %>さんの会員詳細</h2>
+    </div>
+　</div>
+　<div class="row ">
+　  <div class="col-4 font-weight-bold ml-4">
+　    <h5>会員ID</h5>
+　    <h5>氏名</h5>
+　    <h5>フリガナ</h5>
+　    <h5>郵便番号</h5>
+　    <h5>住所</h5>
+　    <h5>電話番号</h5>
+　    <h5>メールアドレス</h5>
+　    <h5 class= "mt-3">会員ステータス</h5>
+　  </div>
+　  <div class="col-6">
+　    <h5><%= @member.id %></h5>
+　    <h5><%= @member.full_name %></h5>
+　    <h5><%= @member.full_ruby_name %></h5>
+　    <h5>〒<%= @member.post_code %></h5>
+　    <h5><%= @member.address %></h5>
+　    <h5><%= @member.phone_number %></h5>
+　    <h5><%= @member.email %></h5>
+　    <h5>
+　      <% if @member.member_status == false %>
+          <p>有効</p>
+        <% else %>
+          <p>退会</p>
+        <% end %>
+　    </h5>
+　    <div><%= link_to "編集する" , edit_admin_member_path(@member.id) %></div>
+　  </div>
+　</div>
+</div>
