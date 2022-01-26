@@ -7,13 +7,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if member_signed_in? %> 
+        <% if member_signed_in? %>
           <li><%= link_to 'ログアウト',destroy_member_session_path, method: :delete,class: 'm-3 p-2 border border-5' %></li>
           <li><%= render 'member/searches/search' %></li>
         <% elsif admin_signed_in? %>
           <li><%= link_to ' 商品一覧',admin_items_path, method: :delete,class: 'm-3 p-2 border border-5' %></li>
           <li><%= link_to ' 会員一覧', admin_members_path,class: 'm-3 p-2 border border-5' %></li>
-          <li><%= link_to ' 注文履歴一覧',destroy_admin_session_path, method: :delete,class: 'm-3 p-2 border border-5'%></li>
+          <li><%= link_to ' 注文履歴一覧',admin_orders_top_path, methd: :get,class: 'm-3 p-2 border border-5'%></li>
           <li><%= link_to ' ジャンル一覧', admin_genres_path,class: 'm-3 p-2 border border-5' %></li>
           <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete,class: 'm-3 p-2 border border-5' %></li>
         <% else %>

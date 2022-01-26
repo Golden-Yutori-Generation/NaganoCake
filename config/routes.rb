@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'orders/top'
-    get 'orders/show'
-  end
   namespace :member do
     get 'delivery_addresses/index'
     get 'delivery_addresses/edit'
@@ -19,6 +15,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
     get 'admin/searches' => 'searches#search'
+    get 'orders/top'
+    resources :orders, only: [:show, :update]
+    resources :ordered_items, only: [:update]
   end
 
   devise_for :members,skip: [:passwords,], controllers: {
