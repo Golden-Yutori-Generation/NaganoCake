@@ -65,7 +65,7 @@
         <tbody>
           <tr>
             <td><span class="chapter-title">支払方法</span><br></td>
-            <td width="600"><%= @order.payment_method %></td>
+            <td width="600"><%= @order.payment_method_i18n %></td>
           </tr>
         </tbody>
       </table>
@@ -86,7 +86,6 @@
       <%= f.hidden_field :payment_method, value: @order.payment_method %>
       <%= f.hidden_field :billing_amount, value: @total_price + 800 %>
       <%= f.hidden_field :member_id, value: @order.member_id %>
-      
       <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
  </div>

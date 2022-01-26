@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     sessions: 'member/sessions'
   }
   
+
   namespace :member do
     get 'searches' => 'searches#search'
     resources :items, only: [:index, :show]
@@ -18,9 +19,10 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :members, only: [:index, :show, :edit, :update]
-    get 'searches' => 'searches#search'
+    get 'admin/searches' => 'searches#search'
     get 'orders/top'
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
+    resources :ordered_items, only: [:update]
   end
 
   get 'members/mypage' => 'members#show'
