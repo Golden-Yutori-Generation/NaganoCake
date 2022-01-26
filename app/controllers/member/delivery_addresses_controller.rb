@@ -2,13 +2,14 @@ class Member::DeliveryAddressesController < ApplicationController
   before_action :authenticate_member!
 
     def index
-      @delivery_addresses = DeliveryAddress.where(member_id: current_member)
+      @delivery_addresses = DeliveryAddress.where(member_id: current_member.id)
       @delivery_address = DeliveryAddress.new
     end
 
     def create
       @delivery_address = DeliveryAddress.new(delivery_address_params)
       @delivery_address.member_id = current_member.id
+      p @delivery_address
       @delivery_address.save
         redirect_to delivery_addresses_path
     end
